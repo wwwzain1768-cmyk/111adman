@@ -1,6 +1,10 @@
 let towersArray = [];
 let editIndex = null;
 
+// متغيرات للديون والمشتركين 
+let totalSubscribers = 0; 
+let totalDebt = 0;
+
 window.onload = function() {
     setTimeout(() => {
         const welcomeScreen = document.getElementById('welcome-screen');
@@ -42,15 +46,28 @@ function saveTower() {
 
 function loadTowers() {
     let savedData = localStorage.getItem('towersData');
-    if (savedData) { towersArray = JSON.parse(savedData); renderTowers(); }
+    if (savedData) { towersArray = JSON.parse(savedData); }
+    renderTowers();
+}
+
+// دالة تحديث الإحصائيات
+function updateStats() {
+    document.getElementById('totalTowersCount').innerText = towersArray.length;
+    document.getElementById('totalSubscribers').innerText = totalSubscribers;
+    document.getElementById('totalDebt').innerText = totalDebt;
 }
 
 function renderTowers() {
+    updateStats(); // تحديث الأرقام
     let listContainer = document.getElementById('towersList');
     listContainer.innerHTML = "";
     towersArray.forEach((tower, index) => {
         let itemDiv = document.createElement('div');
         itemDiv.className = 'tower-item';
+        
+        // تفعيل الضغط على البرج للدخول إليه
+        itemDiv.onclick = function() { openTowerInfo(index); };
+
         itemDiv.innerHTML = `
             <div class="tower-info">
                 <p><strong>البرج:</strong> ${tower.towerName}</p>
@@ -58,8 +75,8 @@ function renderTowers() {
                 <p><strong>الرمز:</strong> ${tower.towerCode}</p>
             </div>
             <div class="action-btns">
-                <button class="edit-btn" onclick="editTower(${index})">تعديل</button>
-                <button class="delete-btn" onclick="deleteTower(${index})">حذف</button>
+                <button class="edit-btn" onclick="event.stopPropagation(); editTower(${index})">تعديل</button>
+                <button class="delete-btn" onclick="event.stopPropagation(); deleteTower(${index})">حذف</button>
             </div>
         `;
         listContainer.appendChild(itemDiv);
@@ -80,4 +97,10 @@ function editTower(index) {
     document.getElementById('towerCode').value = towersArray[index].towerCode;
     document.querySelector('.save-btn').innerText = "تحديث بيانات البرج";
     editIndex = index;
+}
+
+// دالة الدخول إلى معلومات البرج
+function openTowerInfo(index) {
+    let selectedTower = towersArray[index];
+    alert(`تم الدخول إلى البرج: ${selectedTower.towerName}\nهنا ستظهر جميع معلومات حساب الموظف.`);
 }
