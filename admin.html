@@ -4,16 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>إدارة الأبراج - أستاذ سيف</title>
-    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <div id="welcome-screen" class="welcome-screen">
         <h1 class="welcome-text">أهلاً بك أستاذ سيف محمد</h1>
     </div>
 
     <div class="main-container">
-        
         <div class="tabs-header">
             <button class="tab-btn active" onclick="openTab('tab-add-tower')">إنشاء برج جديد</button>
             <button class="tab-btn" onclick="openTab('tab-soon-1')">قريباً 1</button>
@@ -34,20 +32,17 @@
             <button class="save-btn" onclick="saveTower()">حفظ البرج</button>
 
             <h3 class="list-title">قائمة الأبراج</h3>
-            <div id="towersList" class="towers-list">
-                </div>
+            <div id="towersList" class="towers-list"></div>
         </div>
 
         <div id="tab-soon-1" class="tab-content">
             <h2>هذا القسم سيكون متاحاً قريباً...</h2>
         </div>
-
         <div id="tab-soon-2" class="tab-content">
             <h2>هذا القسم سيكون متاحاً قريباً...</h2>
         </div>
-
     </div>
 
-    <script src="admin.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
