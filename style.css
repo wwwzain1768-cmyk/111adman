@@ -12,10 +12,26 @@ body { background-color: #f4f7f6; color: #333; }
 .tab-content.active { display: block; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-/* تنسيق قسم الإحصائيات الجديد */
+/* تنسيق قسم الإحصائيات الجديد مع الأنيميشن الذهبي */
 .dashboard-stats { display: flex; justify-content: space-between; margin-bottom: 30px; gap: 15px; text-align: center; }
-.stat-box { background-color: #34495e; color: white; padding: 15px; border-radius: 8px; flex: 1; font-weight: bold; font-size: 1.1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+.stat-box { 
+    background-color: #34495e; 
+    color: white; 
+    padding: 15px; 
+    border-radius: 8px; 
+    flex: 1; 
+    font-weight: bold; 
+    font-size: 1.1rem; 
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+    border: 2px solid #f1c40f;
+    animation: goldBorderPulse 2s infinite alternate;
+}
 .stat-box span { display: block; margin-top: 10px; font-size: 1.5rem; color: #f1c40f; }
+
+@keyframes goldBorderPulse {
+    0% { border-color: #f1c40f; box-shadow: 0 0 5px rgba(241, 196, 15, 0.4); }
+    100% { border-color: #f39c12; box-shadow: 0 0 15px rgba(243, 156, 18, 1); }
+}
 
 .form-group { margin-bottom: 20px; }
 input[type="text"] { width: 100%; padding: 15px; border: 2px solid #bdc3c7; border-radius: 8px; font-size: 1rem; outline: none; transition: 0.3s; }
@@ -25,10 +41,19 @@ input[type="text"]:focus { border-color: #3498db; box-shadow: 0 0 8px rgba(52, 1
 .list-title { margin-top: 30px; margin-bottom: 15px; color: #2c3e50; border-bottom: 2px solid #ecf0f1; padding-bottom: 10px; }
 
 /* جعل البرج قابلاً للضغط */
-.tower-item { background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #e9ecef; cursor: pointer; transition: 0.3s; }
+.tower-item { background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 10px; display: flex; flex-direction: column; border: 1px solid #e9ecef; cursor: pointer; transition: 0.3s; }
 .tower-item:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-color: #bdc3c7; }
+.tower-info { display: flex; justify-content: space-between; align-items: center; width: 100%; }
 .tower-info p { margin: 5px 0; pointer-events: none; }
 .action-btns button { padding: 8px 15px; margin-right: 5px; border: none; border-radius: 5px; cursor: pointer; color: white; transition: 0.3s; }
 .action-btns button:hover { opacity: 0.8; }
 .edit-btn { background-color: #f39c12; }
 .delete-btn { background-color: #e74c3c; }
+
+/* تفاصيل الزبون والبرج المخفية (تبويبة الأبراج) */
+.customer-header { display: flex; justify-content: space-between; align-items: center; font-size: 1.2rem; font-weight: bold; color: #2c3e50; width: 100%; pointer-events: none; }
+.customer-details { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px solid #bdc3c7; animation: fadeInDown 0.3s ease-out; width: 100%; text-align: right; }
+.customer-details.show { display: block; }
+@keyframes fadeInDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+.history-item { padding: 10px; border-bottom: 1px solid #bdc3c7; font-size: 1rem; background: white; margin-bottom: 5px; border-radius: 5px; text-align: right; }
+.history-item:last-child { margin-bottom: 0; border-bottom: none; }
