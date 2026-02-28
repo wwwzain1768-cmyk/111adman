@@ -14,14 +14,14 @@
     <div class="main-container">
         <div class="tabs-header">
             <button class="tab-btn active" onclick="openTab('tab-add-tower')">إنشاء برج جديد</button>
-            <button class="tab-btn" onclick="openTab('tab-soon-1')">قريباً 1</button>
+            <button class="tab-btn" onclick="openTab('tab-towers')">الأبراج</button>
             <button class="tab-btn" onclick="openTab('tab-soon-2')">قريباً 2</button>
         </div>
 
         <div id="tab-add-tower" class="tab-content active">
             
             <div class="dashboard-stats">
-                <div class="stat-box">عدد المشتركين الكلي<br><span id="totalSubscribers">0</span></div>
+                <div class="stat-box">عدد المشتركين<br><span id="totalSubscribers">0</span></div>
                 <div class="stat-box">الدين الكلي<br><span id="totalDebt">0</span></div>
                 <div class="stat-box">عدد الأبراج<br><span id="totalTowersCount">0</span></div>
             </div>
@@ -42,9 +42,15 @@
             <div id="towersList" class="towers-list"></div>
         </div>
 
-        <div id="tab-soon-1" class="tab-content">
-            <h2>هذا القسم سيكون متاحاً قريباً...</h2>
+        <div id="tab-towers" class="tab-content">
+            <div class="dashboard-stats">
+                <div class="stat-box">الدين الكلي للأبراج<br><span id="allTowersDebtTop">0</span></div>
+                <div class="stat-box">الباقي الكلي للأبراج<br><span id="allTowersRemainingTop">0</span></div>
+            </div>
+            <h2 style="margin-bottom: 20px;">تفاصيل وسجلات الأبراج</h2>
+            <div id="detailedTowersList" class="towers-list"></div>
         </div>
+
         <div id="tab-soon-2" class="tab-content">
             <h2>هذا القسم سيكون متاحاً قريباً...</h2>
         </div>
