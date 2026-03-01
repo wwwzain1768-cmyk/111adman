@@ -5,13 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>إدارة الأبراج - أستاذ سيف</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
-    <div id="welcome-screen" class="welcome-screen">
+    <div id="auth-screen" class="welcome-screen" style="z-index: 10001; flex-direction: column;">
+        <h1 class="welcome-text" style="margin-bottom: 20px;">تسجيل الدخول</h1>
+        <button id="google-login-btn" class="save-btn" style="width: 80%; max-width: 300px; background-color: #e74c3c;">تسجيل بواسطة Google</button>
+    </div>
+
+    <div id="code-screen" class="welcome-screen" style="z-index: 10000; flex-direction: column; display: none;">
+        <h1 class="welcome-text" style="margin-bottom: 20px;">أدخل رمز الدخول</h1>
+        <input type="password" id="adminCode" placeholder="الرمز..." style="padding: 15px; font-size: 1.2rem; text-align: center; border-radius: 8px; border: none; margin-bottom: 20px; outline: none; width: 80%; max-width: 300px;">
+        <button id="verify-code-btn" class="save-btn" style="width: 80%; max-width: 300px;">تأكيد</button>
+    </div>
+
+    <div id="welcome-screen" class="welcome-screen" style="display: none; opacity: 0;">
         <h1 class="welcome-text">أهلاً بك أستاذ سيف محمد</h1>
     </div>
 
-    <div class="main-container">
+    <button id="installAppBtn" style="position: fixed; bottom: 20px; left: 20px; padding: 10px 20px; background-color: #f1c40f; color: #2c3e50; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; display: none; z-index: 9999; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">تثبيت التطبيق</button>
+
+    <div class="main-container" id="main-content" style="display: none;">
         <div class="tabs-header">
             <button class="tab-btn active" onclick="openTab('tab-add-tower')">إنشاء برج جديد</button>
             <button class="tab-btn" onclick="openTab('tab-towers')">الأبراج</button>
@@ -43,8 +57,8 @@
         </div>
 
         <div id="tab-towers" class="tab-content">
-            <div class="dashboard-stats">
-                <div class="stat-box">الدين الكلي للأبراج<br><span id="allTowersDebtTop">0</span></div>
+            <div class="dashboard-stats" style="justify-content: center;">
+                <div class="stat-box" style="max-width: 50%;">الدين الكلي للأبراج<br><span id="allTowersDebtTop">0</span></div>
             </div>
             <h2 style="margin-bottom: 20px;">تفاصيل وسجلات الأبراج</h2>
             <div id="detailedTowersList" class="towers-list"></div>
@@ -55,6 +69,6 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 </html>
