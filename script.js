@@ -1,3 +1,4 @@
+// script.js
 let towersArray = [];
 let editIndex = null;
 
@@ -112,7 +113,6 @@ function renderDetailedTowers() {
     listContainer.innerHTML = "";
 
     let allTowersDebt = 0;
-    let allTowersRemaining = 0;
 
     towersArray.forEach((tower, index) => {
         let towerCustomers = allCustomers.filter(c => c.towerCode === tower.towerCode);
@@ -143,7 +143,6 @@ function renderDetailedTowers() {
         });
 
         allTowersDebt += tDebt;
-        allTowersRemaining += tRem;
 
         if (customersHTML === "") {
             customersHTML = "<p style='text-align:center; color:#7f8c8d; padding: 10px;'>لا يوجد مشتركين في هذا البرج حالياً.</p>";
@@ -179,7 +178,6 @@ function renderDetailedTowers() {
     });
 
     document.getElementById('allTowersDebtTop').innerText = allTowersDebt;
-    document.getElementById('allTowersRemainingTop').innerText = allTowersRemaining;
 }
 
 function deleteTower(index) {
