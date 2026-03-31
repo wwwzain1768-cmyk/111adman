@@ -46,10 +46,30 @@ window.saveTower = async function() {
 
     let newTower = { towerName: name, ownerName: owner, towerCode: code };
 
-    if (editIndex === null) { towersArray.push(newTower); } 
-    else { towersArray[editIndex] = newTower; editIndex = null; document.querySelector('.save-btn').innerText = "حفظ البرج"; }
-
-    await setDoc(doc(db, "data", "towers"), { towersArray });
+    if (editIndex === null) { 
+        towersArray.push(newTower); 
+        await setDoc(doc(db, "data", "towers"), { towersArray });
+    } else { 
+        let oldCode = towersArray[editIndex].towerCode;
+        towersArray[editIndex] = newTower; 
+        
+        if (oldCode !== code) {
+            let customersUpdated = false;
+            for (let i = 0; i < allCustomers.length; i++) {
+                if (allCustomers[i].towerCode === oldCode) {
+                    allCustomers[i].towerCode = code;
+                    customersUpdated = true;
+                }
+            }
+            if (customersUpdated) {
+                await setDoc(doc(db, "data", "customers"), { customersData: allCustomers });
+            }
+        }
+        
+        editIndex = null; 
+        document.querySelector('.save-btn').innerText = "حفظ البرج"; 
+        await setDoc(doc(db, "data", "towers"), { towersArray });
+    }
     
     document.getElementById('towerName').value = "";
     document.getElementById('ownerName').value = "";
